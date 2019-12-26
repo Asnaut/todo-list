@@ -44,8 +44,11 @@ export default {
 form {
   display: flex;
 }
-input [type="text"] {
+input[type="text"] {
   flex: 10;
-  padding: 5px;
+  padding: 8px;
+}
+input[type="submit"] {
+  flex: 2;
 }
 </style>
