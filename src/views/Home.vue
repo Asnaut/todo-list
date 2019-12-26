@@ -8,7 +8,7 @@
 <script>
 import Todos from "../components/Todos";
 import AddTodo from "../components/AddTodo";
-import axios from "axios";
+import Cookies from "js-cookie";
 export default {
   name: "Home",
   components: {
@@ -20,15 +20,24 @@ export default {
       todos: []
     };
   },
-  created() {
-    axios.get("");
+  mounted() {
+    // turn string to json
+    // cookies stores in the string format
+    this.todos = JSON.parse(Cookies.get("todos"));
+    window.console.log(this.todos);
   },
   methods: {
     deleteTodo(id) {
       this.todos = this.todos.filter(todo => todo.id !== id);
+      // turn json to string
+      const todoStr = JSON.stringify(this.todos);
+      Cookies.set("todos", todoStr);
     },
     addTodo(newTodo) {
       this.todos = [...this.todos, newTodo];
+      // turn json to string
+      const todoStr = JSON.stringify(this.todos);
+      Cookies.set("todos", todoStr);
     }
   }
 };
