@@ -29,15 +29,13 @@ export default {
   methods: {
     deleteTodo(id) {
       this.todos = this.todos.filter(todo => todo.id !== id);
-      // turn json to string
       const todoStr = JSON.stringify(this.todos);
-      Cookies.set("todos", todoStr);
+      Cookies.set("todos", todoStr, { expires: 14 });
     },
     addTodo(newTodo) {
       this.todos = [...this.todos, newTodo];
-      // turn json to string
       const todoStr = JSON.stringify(this.todos);
-      Cookies.set("todos", todoStr);
+      Cookies.set("todos", todoStr, { expires: 14 });
     }
   }
 };
